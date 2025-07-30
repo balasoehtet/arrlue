@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: arrlue-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: arrlue.sysinfo.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: arrlue-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - arrlue.sysinfo.com
+    secretName: arrlue-tls

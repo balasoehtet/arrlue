@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: arrlue
+  name: arrlue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arrlue
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: arrlue
+    spec:
+      containers:
+      - image: arrlue/arrlue
+        name: arrlue
+        imagePullPolicy: Always
+        ports: 
+        - containerPort: 80
